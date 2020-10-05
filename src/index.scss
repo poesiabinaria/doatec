@@ -1,0 +1,84 @@
+@import "~bootstrap/scss/bootstrap";
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #595959;
+  background-color: #fafafa;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.bg-grey {
+  background-color: #f4f4f4;
+}
+
+.br {
+  border-radius: 20px;
+}
+
+.btn-main {
+  background-color: yellow;
+}
+
+.container-padrao {
+  background-color: white;
+  border: 1px solid #ebebeb;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.dropdown-toggle,
+.btn-primary:visited {
+  background-color: #32aed6;
+  border: 1px solid #32aed6;
+}
+
+.btn-primary:hover {
+  background-color: #2ea1c7;
+}
+
+.titulo-secao {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.img-media {
+  width: 100%;
+  border-radius: 30px;
+}
+
+#header {
+  //background-color: white;
+  border-bottom: 1px solid #ebebeb;
+}
+
+#logo-doatec {
+  width: 120px;
+}
+
+.header-interno {
+  margin-bottom: 20px;
+}
+
+.titulo-destaque {
+  color: #32aed6;
+}
