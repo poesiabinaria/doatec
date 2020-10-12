@@ -2,13 +2,11 @@ import React, { Component, useState } from "react"
 
 import Page from "./Page"
 import { Link } from "react-router-dom"
+import api from "../services/api"
 
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Button from "react-bootstrap/Button"
-
-import Axios from "axios"
-
 import Form from "react-bootstrap/Form"
 
 function HomeVisitante() {
@@ -18,7 +16,7 @@ function HomeVisitante() {
   async function handleSubmit(e) {
     e.preventDefault()
     try {
-      const response = await Axios.post("URL DO SERVIDOR", {
+      const response = await api.post("URL DO SERVIDOR", {
         email,
         senha,
       })
@@ -30,19 +28,17 @@ function HomeVisitante() {
 
   return (
     <Page title="Início">
-      <Row className="justify-content-md-center">
+      <Row>
         <Col xl="6">
           <header className="header-interno">
-            <h2 class="titulo-destaque">Doe,</h2>
-            <h2 class="titulo-destaque">ajude a educar!</h2>
-            <p class="mt-4">
+            <p className="mt-4 texto-lema">
               <b>Educar</b> é permitir que <b>todos partam da mesma linha</b>.
               Doe dispositivos tecnológicos e torne justa essa largada!
             </p>
           </header>
         </Col>
 
-        <Col xl="4">
+        <Col xl="6">
           <div id="box-login" className="mb-4">
             <h6 className="mb-3 titulo-secao">Login</h6>
             <Form onSubmit={handleSubmit}>
@@ -59,6 +55,7 @@ function HomeVisitante() {
                   onChange={(e) => setSenha(e.target.value)}
                   type="password"
                   placeholder="Senha"
+                  label="kl"
                 />
               </Form.Group>
 

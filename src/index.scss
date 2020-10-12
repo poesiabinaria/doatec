@@ -23,6 +23,11 @@ code {
     monospace;
 }
 
+// ----------
+
+$azul: #4bb8db;
+$rosa: #db476c;
+
 .bg-grey {
   background-color: #f4f4f4;
 }
@@ -68,7 +73,7 @@ code {
 
 #header {
   //background-color: white;
-  border-bottom: 1px solid #ebebeb;
+  //border-bottom: 1px solid #ebebeb;
 }
 
 #logo-doatec {
@@ -82,3 +87,34 @@ code {
 .titulo-destaque {
   color: #32aed6;
 }
+
+#bg-lateral {
+  background-image: url(./img/bg-lateral.png);
+  background-position: 100%;
+  background-size: cover;
+  background-blend-mode: overlay;
+  // position: absolute;
+  // left: 0;
+  // top: 0;
+  height: 1000px;
+  width: 100%;
+  color: white;
+}
+
+.bg-azul {
+  background-color: $azul;
+}
+
+.texto-bg-branco {
+  background-color: white;
+  display: inline-block;
+  color: $rosa;
+  font-weight: 600;
+
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+// .texto-lema {
+//   font-size: 20px;
+// }

@@ -2,14 +2,27 @@ import React, { Component } from "react"
 
 import Page from "./Page"
 import { Link } from "react-router-dom"
+import api from "../services/api"
 
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
 import ListGroup from "react-bootstrap/ListGroup"
 import Button from "react-bootstrap/Button"
-import Form from "react-bootstrap/Form"
 
 export default class HomeInstituicao extends Component {
+  state = {
+    itensSolicitados: [
+      { id: "1", titulo: "Computador" },
+      { id: "2", titulo: "Tablet" },
+    ],
+  }
+
+  componentDidMount() {
+    this.carregarItensSolicitados()
+  }
+
+  carregarItensSolicitados = async () => {
+    //const response = await api.get("/URL")
+    //this.setState({itensSolicitados: Response.data.docs})
+  }
   render() {
     return (
       <Page title="Perfil">
@@ -21,15 +34,11 @@ export default class HomeInstituicao extends Component {
           <div className="mb-3">
             <h6>Seus pedidos de doação:</h6>
             <ListGroup>
-              <ListGroup.Item action href="#link1">
-                Celular Moto G4
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link2">
-                Tablet Samsung Galaxy Tab 7
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link3">
-                Netbook LG X140
-              </ListGroup.Item>
+              {this.state.itensSolicitados.map((itemSolicitado) => (
+                <ListGroup.Item key={itemSolicitado.id} action>
+                  {itemSolicitado.titulo}
+                </ListGroup.Item>
+              ))}
             </ListGroup>
           </div>
           <Button to={"/nova-acao-bem"} as={Link}>
