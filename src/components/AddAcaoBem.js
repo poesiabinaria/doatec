@@ -13,26 +13,20 @@ function AddAcaoBem() {
   const [checkTablet, setCheckTablet] = useState(false)
   const [checkCelular, setCheckCelular] = useState(false)
 
-  async function handleSubmit(e) {
-    e.preventDefault()
-
-    // console.log({
-    //   checkCelular,
-    //   checkComputador,
-    //   checkTablet,
-    // })
-
-    try {
-      const response = await api.post("/", {
-        checkComputador,
-        checkTablet,
-        checkCelular,
-      })
-      console.log(response.data)
-    } catch (e) {
-      console.log("Erro")
+   async function handleSubmit(e) {
+        e.preventDefault()
+        try {
+            const response = await api.post("actions", {
+                checkComputador,
+                checkTablet,
+                checkCelular,
+                userId: 1
+            });
+            console.log(response.data)
+        } catch (e) {
+            console.log("Erro")
+        }
     }
-  }
 
   return (
     <Page title="Adicione uma ação do bem">
