@@ -1,28 +1,28 @@
-import React, { Component, useState } from "react"
+import React, { Component, useState } from "react";
 
-import Page from "./Page"
-import { Link } from "react-router-dom"
-import api from "../services/api"
+import Page from "./Page";
+import { Link } from "react-router-dom";
+import api from "../services/api";
 
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import Button from "react-bootstrap/Button"
-import Form from "react-bootstrap/Form"
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function HomeVisitante() {
-  const [email, setEmail] = useState()
-  const [senha, setSenha] = useState()
+  const [email, setEmail] = useState();
+  const [senha, setSenha] = useState();
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await api.post("URL DO SERVIDOR", {
-        email,
-        senha,
-      })
-      console.log(response.data)
+      const response = await api.post("auth/login", {
+        mail: email,
+        password: senha,
+      });
+      console.log(response.data);
     } catch (e) {
-      console.log("Erro")
+      console.log("Erro");
     }
   }
 
@@ -59,7 +59,7 @@ function HomeVisitante() {
                 />
               </Form.Group>
 
-              <Button type="submit" to={"/perfil"} as={Link} block>
+              <Button type="submit" block>
                 Entrar
               </Button>
             </Form>
@@ -78,7 +78,7 @@ function HomeVisitante() {
         </Col>
       </Row>
     </Page>
-  )
+  );
 }
 
-export default HomeVisitante
+export default HomeVisitante;
