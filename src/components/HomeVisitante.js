@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function HomeVisitante() {
+function HomeVisitante(props) {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
 
@@ -17,28 +17,43 @@ function HomeVisitante() {
     e.preventDefault();
     try {
       const response = await api.post("auth/login", {
-        mail: email,
+        email: email,
         password: senha,
       });
-      console.log(response.data);
+      console.log(response.data.id);
+
+      props.setLogado(true);
+
+      const dadosUsuario = response.data;
+
+      localStorage.setItem("idUsuarioDoaTec", dadosUsuario.id);
+      localStorage.setItem("roleUsuarioDoaTec", dadosUsuario.role);
+      localStorage.setItem("nomeUsuarioDoaTec", dadosUsuario.name);
+
+      if (dadosUsuario.role == "DOADOR") {
+        props.setEhDoador(true);
+      } else {
+        props.setEhDoador(false);
+      }
     } catch (e) {
-      console.log("Erro");
+      console.log("Erro: ", e.response);
+      alert("E-mail ou senha incorretos. Tente novamente!");
     }
   }
 
   return (
     <Page title="Início">
       <Row>
-        <Col xl="6">
+        <Col xl={6} lg={6}>
           <header className="header-interno">
-            <p className="mt-4 texto-lema">
+            <p className="mt-4 texto-lema text-justify">
               <b>Educar</b> é permitir que <b>todos partam da mesma linha</b>.
               Doe dispositivos tecnológicos e torne justa essa largada!
             </p>
           </header>
         </Col>
 
-        <Col xl="6">
+        <Col xl={6} lg={6}>
           <div id="box-login" className="mb-4">
             <h6 className="mb-3 titulo-secao">Login</h6>
             <Form onSubmit={handleSubmit}>
@@ -59,7 +74,7 @@ function HomeVisitante() {
                 />
               </Form.Group>
 
-              <Button type="submit" block>
+              <Button variant="primary" type="submit" block>
                 Entrar
               </Button>
             </Form>

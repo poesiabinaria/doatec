@@ -1,4 +1,5 @@
-@import "~bootstrap/scss/bootstrap";
+//@import "~bootstrap/scss/bootstrap";
+@import "custom-bootstrap";
 
 * {
   margin: 0;
@@ -25,19 +26,12 @@ code {
 
 // ----------
 
-$azul: #4bb8db;
-$rosa: #db476c;
-
 .bg-grey {
   background-color: #f4f4f4;
 }
 
 .br {
   border-radius: 20px;
-}
-
-.btn-main {
-  background-color: yellow;
 }
 
 .container-padrao {
@@ -47,19 +41,6 @@ $rosa: #db476c;
   -webkit-box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
-}
-
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary.dropdown-toggle,
-.btn-primary:visited {
-  background-color: #32aed6;
-  border: 1px solid #32aed6;
-}
-
-.btn-primary:hover {
-  background-color: #2ea1c7;
 }
 
 .titulo-secao {
@@ -85,7 +66,7 @@ $rosa: #db476c;
 }
 
 .titulo-destaque {
-  color: #32aed6;
+  color: $azul;
 }
 
 #bg-lateral {
@@ -115,6 +96,6 @@ $rosa: #db476c;
   margin-bottom: 10px;
 }
 
-// .texto-lema {
-//   font-size: 20px;
-// }
+.item-equipamento {
+  border-bottom: 1px solid #ebebeb;
+}

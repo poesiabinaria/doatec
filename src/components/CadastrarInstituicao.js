@@ -11,7 +11,7 @@ import Form from "react-bootstrap/Form";
 
 function CadastrarInstituicao(props) {
   const [name, setNome] = useState();
-  const [mail, setEmail] = useState();
+  const [email, setEmail] = useState();
   const [password, setSenha] = useState();
 
   async function handleSubmit(e) {
@@ -19,7 +19,7 @@ function CadastrarInstituicao(props) {
     try {
       const response = await api.post("auth/register", {
         name,
-        mail,
+        email,
         password,
         role: "INSTITUICAO",
       });

@@ -1,0 +1,10 @@
+// Variáveis:
+$azul: #47b1d4;
+$rosa: #db476c;
+
+$theme-colors: (
+  "primary": $azul,
+  "secondary": $rosa,
+);
+
+@import "~bootstrap/scss/bootstrap";

@@ -1,11 +1,11 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 
-import Page from "./Page"
-import { Link } from "react-router-dom"
-import api from "../services/api"
+import Page from "./Page";
+import { Link } from "react-router-dom";
+import api from "../services/api";
 
-import ListGroup from "react-bootstrap/ListGroup"
-import Button from "react-bootstrap/Button"
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 export default class HomeInstituicao extends Component {
   state = {
@@ -13,21 +13,21 @@ export default class HomeInstituicao extends Component {
       { id: "1", titulo: "Computador" },
       { id: "2", titulo: "Tablet" },
     ],
-  }
+  };
 
   componentDidMount() {
-    this.carregarItensSolicitados()
+    this.carregarItensSolicitados();
   }
 
   carregarItensSolicitados = async () => {
     //const response = await api.get("/URL")
     //this.setState({itensSolicitados: Response.data.docs})
-  }
+  };
   render() {
     return (
-      <Page title="Perfil">
+      <Page title="Meu perfil">
         <header className="header-interno">
-          <h4>Bem-vindo, Instituto Semear!</h4>
+          <h4>Olá, {localStorage.getItem("nomeUsuarioDoaTec")}!</h4>
         </header>
 
         <div className="conteudo-interno">
@@ -46,6 +46,6 @@ export default class HomeInstituicao extends Component {
           </Button>
         </div>
       </Page>
-    )
+    );
   }
 }

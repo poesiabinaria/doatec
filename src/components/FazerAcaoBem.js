@@ -16,6 +16,7 @@ function FazerAcaoBem(props) {
 
   const [radioEscala, setRadioEscala] = useState("");
 
+  const [inputTituloEquip, setInputTituloEquip] = useState("");
   const [inputProblEquip, setInputProblEquip] = useState("");
   const [inputReparoEquip, setInputReparoEquip] = useState("");
   const [inputImgEquip, setInputImgEquip] = useState("");
@@ -36,10 +37,11 @@ function FazerAcaoBem(props) {
       const response = await api.post("/devices", {
         radioTipoEquip,
         radioEscala,
+        inputTituloEquip,
         inputProblEquip,
         inputReparoEquip,
         inputDescrEquip,
-        userId: 2,
+        userId: localStorage.getItem("idUsuarioDoaTec"),
       });
       console.log(response.data);
       props.history.push("/acao-bem-enviada");
@@ -139,10 +141,18 @@ function FazerAcaoBem(props) {
               />
             </Col>{" "}
           </Form.Group>
-          <h6> Existe algum problema com ele ? Se sim, descreva </h6>{" "}
+          <h6> Título do Euipamento </h6>{" "}
           <Form.Group>
             <Form.Control
               required
+              type="text"
+              rows={3}
+              onChange={(e) => setInputTituloEquip(e.target.value)}
+            />{" "}
+          </Form.Group>
+          <h6> Existe algum problema com ele ? Se sim, descreva </h6>{" "}
+          <Form.Group>
+            <Form.Control
               as="textarea"
               rows={3}
               onChange={(e) => setInputProblEquip(e.target.value)}
@@ -151,7 +161,6 @@ function FazerAcaoBem(props) {
           <h6> O equipamento precisa de algum reparo ? Comente </h6>{" "}
           <Form.Group>
             <Form.Control
-              required
               as="textarea"
               rows={3}
               onChange={(e) => setInputReparoEquip(e.target.value)}
