@@ -24,8 +24,12 @@ function CadastrarDoador(props) {
         role: "DOADOR",
       });
       console.log(response.data);
+      window.confirm(
+        "Cadastro feito com sucesso! Você será direcionado para tela de login."
+      );
       props.history.push("/");
     } catch (e) {
+      alert("E-mail já cadastrado.");
       console.log("Erro");
     }
   }

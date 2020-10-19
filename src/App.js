@@ -30,8 +30,12 @@ function App() {
   return (
     <BrowserRouter>
       <Container fluid>
-        <Row>
-          <Col xl={4} lg={4} className="p-0 d-none d-lg-block d-xl-block">
+        <Row className="h-100">
+          <Col
+            xl={4}
+            lg={4}
+            className="p-0 d-none d-lg-block d-xl-block overflow-hidden"
+          >
             <BannerLateral />
           </Col>
 

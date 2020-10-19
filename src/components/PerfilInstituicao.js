@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Page from "./Page";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../services/api";
 
 import ListGroup from "react-bootstrap/ListGroup";
@@ -9,10 +9,8 @@ import Button from "react-bootstrap/Button";
 
 export default class HomeInstituicao extends Component {
   state = {
-    itensSolicitados: [
-      { id: "1", titulo: "Computador" },
-      { id: "2", titulo: "Tablet" },
-    ],
+    itensSolicitados: [],
+    idUusario: localStorage.getItem("idUsuarioDoaTec"),
   };
 
   componentDidMount() {
@@ -20,27 +18,40 @@ export default class HomeInstituicao extends Component {
   }
 
   carregarItensSolicitados = async () => {
-    //const response = await api.get("/URL")
-    //this.setState({itensSolicitados: Response.data.docs})
+    try {
+      let idUsuario = await localStorage.getItem("idUsuarioDoaTec");
+      console.log("O ID: ", idUsuario);
+      const response = await api.get(`/devices/user/${idUsuario}`);
+
+      this.setState({ itensSolicitados: response.data });
+
+      console.log(response.data);
+    } catch (e) {
+      console.log("Erro ", e.response);
+    }
   };
+
   render() {
     return (
       <Page title="Meu perfil">
         <header className="header-interno">
-          <h4>Olá, {localStorage.getItem("nomeUsuarioDoaTec")}!</h4>
+          <h3>Olá, {localStorage.getItem("nomeUsuarioDoaTec")}!</h3>
+
+          <p>Seus pedidos de doação:</p>
         </header>
 
         <div className="conteudo-interno">
-          <div className="mb-3">
-            <h6>Seus pedidos de doação:</h6>
-            <ListGroup>
-              {this.state.itensSolicitados.map((itemSolicitado) => (
-                <ListGroup.Item key={itemSolicitado.id} action>
-                  {itemSolicitado.titulo}
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
+          <div className="itens-equipamento">
+            {this.state.itensSolicitados.map((itemSolicitado) => (
+              <div className="item-equipamento py-3" key={itemSolicitado.id}>
+                <div className="text-capitalize font-weight-bold mb-1">
+                  {itemSolicitado.radioTipoEquip}
+                </div>
+                <div className="small">{itemSolicitado.inputDescrEquip}</div>
+              </div>
+            ))}
           </div>
+
           <Button to={"/nova-acao-bem"} as={Link}>
             Solicitar doação
           </Button>

@@ -20,7 +20,7 @@ function AddAcaoBem() {
         checkComputador,
         checkTablet,
         checkCelular,
-        userId: 1,
+        userId: localStorage.getItem("idUsuarioDoaTec"),
       });
       console.log(response.data);
     } catch (e) {
@@ -40,7 +40,6 @@ function AddAcaoBem() {
           <Form.Group as={Row} controlId="formHorizontalCheck">
             <Col>
               <Form.Check
-                required
                 name="checkComputador"
                 value="computador"
                 type="checkbox"
@@ -49,7 +48,6 @@ function AddAcaoBem() {
                 onChange={(e) => setCheckComputador(e.target.checked)}
               />
               <Form.Check
-                required
                 name="checkTablet"
                 value="tablet"
                 type="checkbox"
@@ -58,7 +56,6 @@ function AddAcaoBem() {
                 onChange={(e) => setCheckTablet(e.target.checked)}
               />
               <Form.Check
-                required
                 name="checkCelular"
                 value="celular"
                 type="checkbox"
