@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 
 import Page from "./Page";
 import { Link } from "react-router-dom";
@@ -11,24 +11,24 @@ import Form from "react-bootstrap/Form";
 
 function HomeVisitante(props) {
   const [email, setEmail] = useState();
-  const [senha, setSenha] = useState();
+  const [password, setPassword] = useState();
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       const response = await api.post("auth/login", {
-        email: email,
-        password: senha,
+        email,
+        password,
       });
-      console.log(response.data.id);
-
-      props.setLogado(true);
 
       const dadosUsuario = response.data;
+      console.log(dadosUsuario.id);
 
       localStorage.setItem("idUsuarioDoaTec", dadosUsuario.id);
       localStorage.setItem("roleUsuarioDoaTec", dadosUsuario.role);
       localStorage.setItem("nomeUsuarioDoaTec", dadosUsuario.name);
+
+      props.setLogado(true);
 
       if (dadosUsuario.role == "DOADOR") {
         props.setEhDoador(true);
@@ -59,6 +59,7 @@ function HomeVisitante(props) {
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
+                  autoFocus
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   placeholder="E-mail"
@@ -67,7 +68,7 @@ function HomeVisitante(props) {
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Control
-                  onChange={(e) => setSenha(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   placeholder="Senha"
                   label="kl"

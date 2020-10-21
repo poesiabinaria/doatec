@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 
 import Page from "./Page";
 import { Link, useParams } from "react-router-dom";
@@ -7,55 +7,69 @@ import api from "../services/api";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 
-export default class HomeDoador extends Component {
-  state = {
-    itensDoados: [],
-    idUusario: localStorage.getItem("idUsuarioDoaTec"),
-  };
+function HomeDoador(props) {
+  //const { idUsuario } = useParams();
 
-  componentDidMount() {
-    this.carregarItensDoados();
-  }
+  const [carregado, setCarregado] = useState(false);
+  const [itensDoados, setItensDoados] = useState([
+    {
+      inputTituloEquip: "...",
+      inputDescrEquip: "...",
+    },
+  ]);
 
-  carregarItensDoados = async () => {
-    try {
-      let idUsuario = await localStorage.getItem("idUsuarioDoaTec");
-      console.log("O ID: ", idUsuario);
-      const response = await api.get(`/devices/user/${idUsuario}`);
+  useEffect(() => {
+    async function carregarItensDoados() {
+      try {
+        let idUsuario = localStorage.getItem("idUsuarioDoaTec");
+        console.log("O ID: ", idUsuario);
+        const response = await api.get(`/devices/user/${idUsuario}`);
 
-      this.setState({ itensDoados: response.data });
-
-      console.log(response.data);
-    } catch (e) {
-      console.log("Erro ", e.response);
+        setItensDoados(response.data);
+        setCarregado(true);
+        console.log(response.data);
+      } catch (e) {
+        console.log("Erro ", e.response);
+      }
     }
-  };
+    carregarItensDoados();
+  }, []);
 
-  render() {
-    return (
-      <Page title="Meu perfil">
-        <header className="header-interno">
-          <h3>Olá, {localStorage.getItem("nomeUsuarioDoaTec")}!</h3>
-          <p>Suas doações:</p>
-        </header>
+  return (
+    <Page title="Meu perfil">
+      <header className="header-interno">
+        <h3>Olá, {localStorage.getItem("nomeUsuarioDoaTec")}!</h3>
+        <p>Suas doações:</p>
+      </header>
 
+      {carregado ? (
         <div className="conteudo-interno">
-          <div className="itens-equipamento">
-            {this.state.itensDoados.map((itemDoado) => (
-              <div className="item-equipamento py-3" key={itemDoado.id}>
-                <div className="text-capitalize font-weight-bold mb-1">
-                  {itemDoado.radioTipoEquip}
+          {itensDoados.length ? (
+            <div className="itens-equipamento">
+              {itensDoados.map((itemDoado) => (
+                <div className="item-equipamento py-3" key={itemDoado.id}>
+                  <div className="text-capitalize font-weight-bold mb-1">
+                    {itemDoado.radioTipoEquip}
+                  </div>
+                  <div className="small">{itemDoado.inputDescrEquip}</div>
                 </div>
-                <div className="small">{itemDoado.inputDescrEquip}</div>
-              </div>
-            ))}
-          </div>
-
-          <Button className="mt-4" to={"/fazer-acao-bem"} as={Link}>
-            Fazer doação
-          </Button>
+              ))}
+            </div>
+          ) : (
+            <div>
+              Você não tem itens doados. Clique no botão abaixo para doar!
+            </div>
+          )}
         </div>
-      </Page>
-    );
-  }
+      ) : (
+        <div>Carregando...</div>
+      )}
+
+      <Button className="mt-4" to={"/fazer-acao-bem"} as={Link}>
+        Fazer doação
+      </Button>
+    </Page>
+  );
 }
+
+export default HomeDoador;

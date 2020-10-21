@@ -4,9 +4,7 @@ import PerfilDoador from "./PerfilDoador";
 import PerfilInstituicao from "./PerfilInstituicao";
 
 function Perfil(props) {
-  const ehDoador = props.ehDoador;
-
-  if (ehDoador) {
+  if (props.ehDoadors) {
     return <PerfilDoador />;
   }
   return <PerfilInstituicao />;

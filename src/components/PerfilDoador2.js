@@ -7,23 +7,23 @@ import api from "../services/api";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 
-export default class HomeInstituicao extends Component {
+export default class HomeDoador extends Component {
   state = {
-    itensSolicitados: [],
+    itensDoados: [],
     idUusario: localStorage.getItem("idUsuarioDoaTec"),
   };
 
   componentDidMount() {
-    this.carregarItensSolicitados();
+    this.carregarItensDoados();
   }
 
-  carregarItensSolicitados = async () => {
+  carregarItensDoados = async () => {
     try {
       let idUsuario = await localStorage.getItem("idUsuarioDoaTec");
-      console.log("O IDa: ", idUsuario);
+      console.log("O ID: ", idUsuario);
       const response = await api.get(`/devices/user/${idUsuario}`);
 
-      this.setState({ itensSolicitados: response.data });
+      this.setState({ itensDoados: response.data });
 
       console.log(response.data);
     } catch (e) {
@@ -36,24 +36,23 @@ export default class HomeInstituicao extends Component {
       <Page title="Meu perfil">
         <header className="header-interno">
           <h3>Olá, {localStorage.getItem("nomeUsuarioDoaTec")}!</h3>
-
-          <p>Seus pedidos de doação:</p>
+          <p>Suas doações:</p>
         </header>
 
         <div className="conteudo-interno">
           <div className="itens-equipamento">
-            {this.state.itensSolicitados.map((itemSolicitado) => (
-              <div className="item-equipamento py-3" key={itemSolicitado.id}>
+            {this.state.itensDoados.map((itemDoado) => (
+              <div className="item-equipamento py-3" key={itemDoado.id}>
                 <div className="text-capitalize font-weight-bold mb-1">
-                  {itemSolicitado.radioTipoEquip}
+                  {itemDoado.radioTipoEquip}
                 </div>
-                <div className="small">{itemSolicitado.inputDescrEquip}</div>
+                <div className="small">{itemDoado.inputDescrEquip}</div>
               </div>
             ))}
           </div>
 
-          <Button to={"/nova-acao-bem"} as={Link}>
-            Solicitar doação
+          <Button className="mt-4" to={"/fazer-acao-bem"} as={Link}>
+            Fazer doação
           </Button>
         </div>
       </Page>

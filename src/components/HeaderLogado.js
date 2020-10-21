@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
@@ -7,6 +7,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 function HeaderLogado(props) {
   function handleDeslogar() {
     props.setLogado(false);
+
     localStorage.removeItem("idUsuarioDoaTec");
     localStorage.removeItem("roleUsuarioDoaTec");
     localStorage.removeItem("nomeUsuarioDoaTec");

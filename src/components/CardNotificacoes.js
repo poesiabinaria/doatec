@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React from "react";
 
 function CardNotificacoes() {
   return <div>Teste</div>;
