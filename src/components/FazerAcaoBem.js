@@ -41,7 +41,7 @@ function FazerAcaoBem(props) {
         inputProblEquip,
         inputReparoEquip,
         inputDescrEquip,
-        userId: localStorage.getItem("idUsuarioDoaTec"),
+        user_id: localStorage.getItem("idUsuarioDoaTec"),
       });
       console.log(response.data);
       props.history.push("/acao-bem-enviada");
