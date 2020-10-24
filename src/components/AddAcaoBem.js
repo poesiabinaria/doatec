@@ -20,7 +20,7 @@ function AddAcaoBem() {
         checkComputador,
         checkTablet,
         checkCelular,
-        userId: localStorage.getItem("idUsuarioDoaTec"),
+        user_id: localStorage.getItem("idUsuarioDoaTec"),
       });
       console.log(response.data);
     } catch (e) {
