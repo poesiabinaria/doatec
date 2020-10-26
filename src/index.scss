@@ -37,7 +37,14 @@ code {
   background-color: $azul;
 }
 
-#bg-lateral {
+#banner-lateral {
+  background-image: url(./img/banner-lateral.png);
+  background-position: 100%;
+  background-size: cover;
+  background-blend-mode: overlay;
+  height: 1000px;
+  width: 100%;
+  color: white;
   .texto-bg-branco {
     background-color: white;
     display: inline-block;
@@ -72,17 +79,4 @@ code {
   .footer-interno {
     border-top: 1px solid #ebebeb;
   }
-}
-
-#bg-lateral {
-  background-image: url(./img/bg-lateral.png);
-  background-position: 100%;
-  background-size: cover;
-  background-blend-mode: overlay;
-  // position: absolute;
-  // left: 0;
-  // top: 0;
-  height: 1000px;
-  width: 100%;
-  color: white;
 }

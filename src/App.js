@@ -10,8 +10,9 @@ import CadastrarDoador from "./components/CadastrarDoador";
 import CadastrarInstituicao from "./components/CadastrarInstituicao";
 import AddAcaoBem from "./components/AddAcaoBem";
 import FazerAcaoBem from "./components/FazerAcaoBem";
+import SucessoAddAcaoBem from "./components/SucessoAddAcaoBem";
 import SucessoFazerAcaoBem from "./components/SucessoFazerAcaoBem";
-import CardNotificacoes from "./components/CardNotificacoes";
+import CardAlertas from "./components/CardAlertas";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -31,11 +32,6 @@ function App() {
     setMensagens([...mensagens, { msg, tipo }]);
   }
 
-  function yourHandler() {
-    console.log("oi");
-    setMensagens([]);
-  }
-
   return (
     <BrowserRouter>
       <Container fluid>
@@ -49,16 +45,17 @@ function App() {
 
             <Container>
               <div className="container-central p-5">
-                <CardNotificacoes mensagens={mensagens} />
+                <CardAlertas mensagens={mensagens} />
 
                 <Switch>
-                  <Route exact path="/" onChange={() => yourHandler()}>
+                  <Route exact path="/">
                     {logado ? (
                       <Perfil ehDoador={ehDoador} />
                     ) : (
                       <HomeVisitante
                         setLogado={setLogado}
                         setEhDoador={setEhDoador}
+                        addMensagem={addMensagem}
                       />
                     )}
                   </Route>
@@ -75,12 +72,16 @@ function App() {
                     <FazerAcaoBem />
                   </Route>
 
+                  <Route path="/doacao-cadastrada">
+                    <SucessoFazerAcaoBem />
+                  </Route>
+
                   <Route path="/nova-acao-bem">
                     <AddAcaoBem />
                   </Route>
 
-                  <Route path="/acao-bem-enviada">
-                    <SucessoFazerAcaoBem />
+                  <Route path="/doacao-solicitada">
+                    <SucessoAddAcaoBem />
                   </Route>
                 </Switch>
               </div>

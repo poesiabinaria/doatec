@@ -37,7 +37,10 @@ function HomeVisitante(props) {
       }
     } catch (e) {
       console.log("Erro: ", e.response);
-      alert("E-mail ou senha incorretos. Tente novamente!");
+      props.addMensagem(
+        "E-mail ou senha incorretos. Tente novamente.",
+        "danger"
+      );
     }
   }
 

@@ -39,7 +39,7 @@ function FazerAcaoBem(props) {
         user_id: localStorage.getItem("idUsuarioDoaTec"),
       });
       console.log(response.data);
-      props.history.push("/acao-bem-enviada");
+      props.history.push("/doacao-cadastrada");
     } catch (e) {
       console.log("Erro");
     }

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
 
-function SucessoFazerAcaoBem(props) {
+function SucessoAddAcaoBem(props) {
   return (
     <Page title="Obrigado!">
       <header className="header-interno">
@@ -13,16 +13,16 @@ function SucessoFazerAcaoBem(props) {
       </header>
       <div className="main-interno">
         <p>
-          Pronto! Seu equipamento será analisado e, se for aprovado, será doado
-          para alguma instituição cadastrada. Esperamos que dê tudo certo.
-          Obrigado!
+          Pronto! Seu pedido de doação foi registrado e está aguardando um
+          doador que possa oferecer o que você precisa! Esperamos que dê tudo
+          certo. Obrigado!
         </p>
-        <Button to={"/fazer-acao-bem"} as={Link}>
-          Doar outro equipamento
+        <Button to={"/nova-acao-bem"} as={Link}>
+          Solicitar outro equipamento
         </Button>
       </div>
     </Page>
   );
 }
 
-export default SucessoFazerAcaoBem;
+export default SucessoAddAcaoBem;

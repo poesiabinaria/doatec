@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 import Page from "./Page";
+import { withRouter } from "react-router-dom";
 import api from "../services/api";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function AddAcaoBem() {
+function AddAcaoBem(props) {
   const [checkComputador, setCheckComputador] = useState(false);
   const [checkTablet, setCheckTablet] = useState(false);
   const [checkCelular, setCheckCelular] = useState(false);
@@ -21,6 +22,7 @@ function AddAcaoBem() {
         user_id: localStorage.getItem("idUsuarioDoaTec"),
       });
       console.log(response.data);
+      props.history.push("/doacao-solicitada");
     } catch (e) {
       console.log("Erro");
     }
@@ -71,4 +73,4 @@ function AddAcaoBem() {
   );
 }
 
-export default AddAcaoBem;
+export default withRouter(AddAcaoBem);

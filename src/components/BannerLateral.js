@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class BannerLateral extends Component {
   render() {
     return (
-      <div id="bg-lateral" className="bg-azul">
+      <div id="banner-lateral" className="bg-azul">
         <div className="area-titulo p-4">
           <h1>
             <div className="texto-bg-branco text-lowercase">Doe ❤</div>

@@ -17,6 +17,7 @@ function PerfilInstituicao() {
         let idUsuario = localStorage.getItem("idUsuarioDoaTec");
         console.log("O ID AQUI: ", idUsuario);
         const response = await api.get(`/matches/user/23`);
+        console.log(response.data);
 
         const arrayIntermediario = response.data.map((itemMatch) => {
           return {
@@ -29,6 +30,9 @@ function PerfilInstituicao() {
             tipoEquip: itemMatch.device.radioTipoEquip,
             tituloEquip: itemMatch.device.inputTituloEquip,
             descrEquip: itemMatch.device.inputDescrEquip,
+            problEquip: itemMatch.device.inputProblEquip,
+            reparoEquip: itemMatch.device.inputReparoEquip,
+            escalaEquip: itemMatch.device.radioEscala,
           };
         });
         setColecaoMatches([...colecaoMatches, ...arrayIntermediario]);
@@ -60,11 +64,17 @@ function PerfilInstituicao() {
                   <div>
                     Email do doador: <b>{itemMatch.dadosDoador.emailDoador}</b>
                   </div>
-
-                  <div className="small font-weight-bold">
-                    {itemMatch.tituloEquip}
+                  <div className="sobre-equipamento mt-2 small">
+                    <div className="font-weight-bold">
+                      {itemMatch.tituloEquip}
+                    </div>
+                    <div>{itemMatch.descrEquip}</div>
+                    <div>
+                      Estado do equipamento (0 a 5): {itemMatch.escalaEquip}
+                    </div>
+                    <div>{itemMatch.problEquip}</div>
+                    <div>{itemMatch.reparoEquip}</div>
                   </div>
-                  <div className="small">{itemMatch.descrEquip}</div>
                 </div>
               ))}
             </div>
