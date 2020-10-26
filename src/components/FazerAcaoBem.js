@@ -128,7 +128,8 @@ function FazerAcaoBem(props) {
               />
             </div>
             <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
+              (1) - ele não funciona | (2) - funciona às vezes | (3) - funciona
+              lento | (4) - funciona bem | (5) - funciona perfeitamente
             </Form.Text>
           </Form.Group>
 

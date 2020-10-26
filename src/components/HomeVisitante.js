@@ -9,6 +9,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import maosCoracao from "../img/maos-coracao.png";
+
 function HomeVisitante(props) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -50,8 +52,11 @@ function HomeVisitante(props) {
         <Col xl={6} lg={6}>
           <header className="header-interno">
             <p className="mt-4 texto-lema text-justify">
+              <div className="text-center mb-4">
+                <img id="maos-coracao" src={maosCoracao} alt="" />
+              </div>
               <b>Educar</b> é permitir que <b>todos partam da mesma linha</b>.
-              Doe dispositivos tecnológicos e torne justa essa largada!
+              Doe dispositivos tecnológicos e <b>torne justa</b> essa largada!
             </p>
           </header>
         </Col>
@@ -62,6 +67,7 @@ function HomeVisitante(props) {
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
+                  required
                   autoFocus
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
@@ -71,6 +77,7 @@ function HomeVisitante(props) {
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Control
+                  required
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   placeholder="Senha"
