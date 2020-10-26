@@ -27,7 +27,7 @@ function PerfilInstituicao() {
       try {
         let idUsuario = localStorage.getItem("idUsuarioDoaTec");
         console.log("O ID AQUI: ", idUsuario);
-        const response = await api.get(`/matches/user/23`);
+        const response = await api.get(`/matches/user/${idUsuario}`);
         console.log(response.data);
 
         const arrayIntermediario = response.data.map((itemMatch) => {

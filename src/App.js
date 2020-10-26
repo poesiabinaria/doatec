@@ -36,11 +36,15 @@ function App() {
     <BrowserRouter>
       <Container fluid>
         <Row>
-          <Col xl={4} lg={4} className="p-0 d-none d-lg-block d-xl-block">
+          <Col
+            xl={4}
+            lg={4}
+            className="h-100 p-0 d-none d-lg-block d-xl-block position-fixed"
+          >
             <BannerLateral />
           </Col>
 
-          <Col xl={{ span: 6, offset: 1 }} lg={8}>
+          <Col xl={{ span: 6, offset: 5 }} lg={{ span: 6, offset: 5 }}>
             <Header logado={logado} setLogado={setLogado} />
 
             <Container>
@@ -87,8 +91,6 @@ function App() {
               </div>
             </Container>
           </Col>
-
-          <Col xl={{ offset: 0 }}></Col>
         </Row>
       </Container>
     </BrowserRouter>

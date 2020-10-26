@@ -6,7 +6,7 @@ const ConteudoVazio = () => {
     <div className="container-sem-conteudo text-center mb-4">
       <div className="imagem">
         <img src={logoDoaTecCinza} alt="" />
-        <div className="texto">Ainda não há nada aqui!</div>
+        <div className="texto font-weight-bold">Ainda não há nada aqui!</div>
       </div>
     </div>
   );

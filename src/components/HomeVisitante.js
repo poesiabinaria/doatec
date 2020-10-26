@@ -51,13 +51,13 @@ function HomeVisitante(props) {
       <Row>
         <Col xl={6} lg={6}>
           <header className="header-interno">
-            <p className="mt-4 texto-lema text-justify">
+            <div className="mt-4 texto-lema text-justify">
               <div className="text-center mb-4">
                 <img id="maos-coracao" src={maosCoracao} alt="" />
               </div>
               <b>Educar</b> é permitir que <b>todos partam da mesma linha</b>.
               Doe dispositivos tecnológicos e <b>torne justa</b> essa largada!
-            </p>
+            </div>
           </header>
         </Col>
 
