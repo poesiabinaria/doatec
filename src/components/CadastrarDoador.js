@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 
 import Page from "./Page";
@@ -24,12 +24,13 @@ function CadastrarDoador(props) {
         role: "DOADOR",
       });
       console.log(response.data);
-      window.confirm(
-        "Cadastro feito com sucesso! Você será direcionado para tela de login."
+      props.addMensagem(
+        "Cadastro feito com sucesso! Faça login para continuar.",
+        "success"
       );
       props.history.push("/");
     } catch (e) {
-      alert("E-mail já cadastrado.");
+      props.addMensagem("E-mail já cadastrado.", "danger");
       console.log("Erro");
     }
   }
@@ -39,11 +40,11 @@ function CadastrarDoador(props) {
       <header className="header-interno">
         <h4> Cadastre-se como um doador </h4>
       </header>
-      <div className="conteudo-interno">
+      <div className="main-interno">
         <Row>
           <Col lg="6">
             <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formBasicEmail">
+              <Form.Group controlId="formBasicName">
                 <Form.Control
                   required
                   onChange={(e) => setNome(e.target.value)}
@@ -56,7 +57,7 @@ function CadastrarDoador(props) {
                   required
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
-                  placeholder="E-mail"
+                  placeholder="Email"
                 />
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
@@ -67,11 +68,11 @@ function CadastrarDoador(props) {
                   placeholder="Senha"
                 />
               </Form.Group>
-              <Button type="submit"> Cadastrar </Button>{" "}
-            </Form>{" "}
-          </Col>{" "}
-        </Row>{" "}
-      </div>{" "}
+              <Button type="submit"> Cadastrar </Button>
+            </Form>
+          </Col>
+        </Row>
+      </div>
     </Page>
   );
 }

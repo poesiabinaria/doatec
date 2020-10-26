@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 
 import Page from "./Page";
@@ -24,8 +24,13 @@ function CadastrarInstituicao(props) {
         role: "INSTITUICAO",
       });
       console.log(response.data);
+      props.addMensagem(
+        "Cadastro feito com sucesso! Faça login para continuar.",
+        "success"
+      );
       props.history.push("/");
     } catch (e) {
+      props.addMensagem("E-mail já cadastrado.", "danger");
       console.log("Erro");
     }
   }
@@ -35,7 +40,7 @@ function CadastrarInstituicao(props) {
       <header className="header-interno">
         <h4> Cadastre - se como uma instituição </h4>{" "}
       </header>
-      <div className="conteudo-interno">
+      <div className="main-interno">
         <Row>
           <Col lg="8">
             <Form onSubmit={handleSubmit}>
@@ -52,7 +57,7 @@ function CadastrarInstituicao(props) {
                   required
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
-                  placeholder="E-mail"
+                  placeholder="Email"
                 />
               </Form.Group>
               <Form.Group controlId="formBasicPassword">

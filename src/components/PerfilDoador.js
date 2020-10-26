@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import Page from "./Page";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../services/api";
 
-import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import loaderAnimado from "../img/loader-doatec.svg";
 
-function HomeDoador(props) {
-  //const { idUsuario } = useParams();
-
+function PerfilDoador() {
   const [carregado, setCarregado] = useState(false);
   const [itensDoados, setItensDoados] = useState([
     {
@@ -22,11 +20,12 @@ function HomeDoador(props) {
     async function carregarItensDoados() {
       try {
         let idUsuario = localStorage.getItem("idUsuarioDoaTec");
-        console.log("O ID: ", idUsuario);
+
         const response = await api.get(`/devices/user/${idUsuario}`);
 
         setItensDoados(response.data);
         setCarregado(true);
+
         console.log(response.data);
       } catch (e) {
         console.log("Erro ", e.response);
@@ -43,15 +42,17 @@ function HomeDoador(props) {
       </header>
 
       {carregado ? (
-        <div className="conteudo-interno">
+        <div className="main-interno my-3">
           {itensDoados.length ? (
-            <div className="itens-equipamento">
+            <div className="itens-lista">
               {itensDoados.map((itemDoado) => (
-                <div className="item-equipamento py-3" key={itemDoado.id}>
-                  <div className="text-capitalize font-weight-bold mb-1">
-                    {itemDoado.radioTipoEquip}
+                <div key={itemDoado.id}>
+                  <div className="item-lista p-3 my-3">
+                    <div className="font-weight-bold">
+                      {itemDoado.inputTituloEquip}
+                    </div>
+                    <div className="small">{itemDoado.inputDescrEquip}</div>
                   </div>
-                  <div className="small">{itemDoado.inputDescrEquip}</div>
                 </div>
               ))}
             </div>
@@ -62,14 +63,17 @@ function HomeDoador(props) {
           )}
         </div>
       ) : (
-        <div>Carregando...</div>
+        <div className="text-center">
+          <img src={loaderAnimado} /> Carregando...
+        </div>
       )}
-
-      <Button className="mt-4" to={"/fazer-acao-bem"} as={Link}>
-        Fazer doação
-      </Button>
+      <footer className="footer-interno pt-4 mt-4">
+        <Button to={"/fazer-acao-bem"} as={Link}>
+          Fazer doação
+        </Button>
+      </footer>
     </Page>
   );
 }
 
-export default HomeDoador;
+export default PerfilDoador;

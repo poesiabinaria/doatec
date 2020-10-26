@@ -1,4 +1,3 @@
-//@import "~bootstrap/scss/bootstrap";
 @import "custom-bootstrap";
 
 * {
@@ -10,9 +9,8 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #595959;
@@ -26,47 +24,54 @@ code {
 
 // ----------
 
-.bg-grey {
-  background-color: #f4f4f4;
-}
-
-.br {
-  border-radius: 20px;
-}
-
-.container-padrao {
-  background-color: white;
-  border: 1px solid #ebebeb;
-  border-radius: 20px;
-  -webkit-box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
-}
-
-.titulo-secao {
-  text-transform: uppercase;
-  font-size: 12px;
-}
-.img-media {
-  width: 100%;
-  border-radius: 30px;
-}
-
-#header {
-  //background-color: white;
-  //border-bottom: 1px solid #ebebeb;
-}
-
 #logo-doatec {
   width: 120px;
 }
 
-.header-interno {
-  margin-bottom: 20px;
+.titulo-pequeno {
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
-.titulo-destaque {
-  color: $azul;
+.bg-azul {
+  background-color: $azul;
+}
+
+#bg-lateral {
+  .texto-bg-branco {
+    background-color: white;
+    display: inline-block;
+    color: $rosa;
+    font-weight: 600;
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+  .area-manchete-estudante {
+    //margin-top: 600px;
+  }
+}
+
+.container-central {
+  background-color: white;
+  border: 1px solid #ebebeb;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  -webkit-box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 10px 30px -32px rgba(0, 0, 0, 0.75);
+
+  .header-interno {
+    margin-bottom: 20px;
+  }
+  .main-interno {
+    .item-lista {
+      background-color: #f5f5f5;
+      border-radius: 15px;
+    }
+  }
+  .footer-interno {
+    border-top: 1px solid #ebebeb;
+  }
 }
 
 #bg-lateral {
@@ -80,26 +85,4 @@ code {
   height: 1000px;
   width: 100%;
   color: white;
-}
-
-.bg-azul {
-  background-color: $azul;
-}
-
-.texto-bg-branco {
-  background-color: white;
-  display: inline-block;
-  color: $rosa;
-  font-weight: 600;
-
-  padding: 0 10px;
-  margin-bottom: 10px;
-}
-
-.item-equipamento {
-  border-bottom: 1px solid #ebebeb;
-}
-
-.area-manchete-estudante {
-  margin-top: 600px;
 }

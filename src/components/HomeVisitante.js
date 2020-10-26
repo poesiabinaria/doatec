@@ -22,7 +22,7 @@ function HomeVisitante(props) {
       });
 
       const dadosUsuario = response.data;
-      console.log(dadosUsuario.id);
+      //console.log(dadosUsuario);
 
       localStorage.setItem("idUsuarioDoaTec", dadosUsuario.id);
       localStorage.setItem("roleUsuarioDoaTec", dadosUsuario.role);
@@ -30,7 +30,7 @@ function HomeVisitante(props) {
 
       props.setLogado(true);
 
-      if (dadosUsuario.role == "DOADOR") {
+      if (dadosUsuario.role === "DOADOR") {
         props.setEhDoador(true);
       } else {
         props.setEhDoador(false);
@@ -55,14 +55,14 @@ function HomeVisitante(props) {
 
         <Col xl={6} lg={6}>
           <div id="box-login" className="mb-4">
-            <h6 className="mb-3 titulo-secao">Login</h6>
+            <h6 className="mb-3 titulo-pequeno">Login</h6>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
                   autoFocus
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
-                  placeholder="E-mail"
+                  placeholder="Email"
                 />
               </Form.Group>
 
@@ -82,7 +82,7 @@ function HomeVisitante(props) {
           </div>
 
           <div id="box-cadastre">
-            <h6 className="mb-3 titulo-secao">Cadastre-se</h6>
+            <h6 className="mb-3 titulo-pequeno">Cadastre-se</h6>
             <Button as={Link} to="/cadastrar/doador" block>
               Quero doar
             </Button>

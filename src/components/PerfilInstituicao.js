@@ -1,62 +1,93 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
 import Page from "./Page";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../services/api";
 
-import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import loaderAnimado from "../img/loader-doatec.svg";
 
-export default class HomeInstituicao extends Component {
-  state = {
-    itensSolicitados: [],
-    idUusario: localStorage.getItem("idUsuarioDoaTec"),
-  };
+function PerfilInstituicao() {
+  const [carregado, setCarregado] = useState(false);
+  const [colecaoMatches, setColecaoMatches] = useState([]);
 
-  componentDidMount() {
-    this.carregarItensSolicitados();
-  }
+  useEffect(() => {
+    async function carregarMatches() {
+      try {
+        let idUsuario = localStorage.getItem("idUsuarioDoaTec");
+        console.log("O ID AQUI: ", idUsuario);
+        const response = await api.get(`/matches/user/23`);
 
-  carregarItensSolicitados = async () => {
-    try {
-      let idUsuario = await localStorage.getItem("idUsuarioDoaTec");
-      console.log("O IDa: ", idUsuario);
-      const response = await api.get(`/devices/user/${idUsuario}`);
-
-      this.setState({ itensSolicitados: response.data });
-
-      console.log(response.data);
-    } catch (e) {
-      console.log("Erro ", e.response);
+        const arrayIntermediario = response.data.map((itemMatch) => {
+          return {
+            dadosDoador: {
+              idDoador: itemMatch.device_user_id,
+              nomeDoador: itemMatch.device.user.name,
+              emailDoador: itemMatch.device.user.email,
+            },
+            id: itemMatch.id,
+            tipoEquip: itemMatch.device.radioTipoEquip,
+            tituloEquip: itemMatch.device.inputTituloEquip,
+            descrEquip: itemMatch.device.inputDescrEquip,
+          };
+        });
+        setColecaoMatches([...colecaoMatches, ...arrayIntermediario]);
+        setCarregado(true);
+      } catch (e) {
+        console.log("Erro ", e.response);
+      }
     }
-  };
+    carregarMatches();
+  }, []);
 
-  render() {
-    return (
-      <Page title="Meu perfil">
-        <header className="header-interno">
-          <h3>Olá, {localStorage.getItem("nomeUsuarioDoaTec")}!</h3>
+  return (
+    <Page title="Meu perfil">
+      <header className="header-interno">
+        <h3>Olá, {localStorage.getItem("nomeUsuarioDoaTec")}!</h3>
+        <p>Doações disponíveis para sua instituição:</p>
+      </header>
 
-          <p>Seus pedidos de doação:</p>
-        </header>
+      {carregado ? (
+        <div className="main-interno my-3">
+          {colecaoMatches.length ? (
+            <div className="itens-lista">
+              {colecaoMatches.map((itemMatch) => (
+                <div className="item-lista p-3 my-3" key={itemMatch.id}>
+                  <div>
+                    <b>{itemMatch.dadosDoador.nomeDoador}</b> tem um{" "}
+                    {itemMatch.tipoEquip} disponível para sua instituição!
+                  </div>
+                  <div>
+                    Email do doador: <b>{itemMatch.dadosDoador.emailDoador}</b>
+                  </div>
 
-        <div className="conteudo-interno">
-          <div className="itens-equipamento">
-            {this.state.itensSolicitados.map((itemSolicitado) => (
-              <div className="item-equipamento py-3" key={itemSolicitado.id}>
-                <div className="text-capitalize font-weight-bold mb-1">
-                  {itemSolicitado.radioTipoEquip}
+                  <div className="small font-weight-bold">
+                    {itemMatch.tituloEquip}
+                  </div>
+                  <div className="small">{itemMatch.descrEquip}</div>
                 </div>
-                <div className="small">{itemSolicitado.inputDescrEquip}</div>
-              </div>
-            ))}
-          </div>
-
-          <Button to={"/nova-acao-bem"} as={Link}>
-            Solicitar doação
-          </Button>
+              ))}
+            </div>
+          ) : (
+            <div>Você não tem matches!</div>
+          )}
         </div>
-      </Page>
-    );
-  }
+      ) : (
+        <div className="text-center">
+          <img src={loaderAnimado} /> Carregando...
+        </div>
+      )}
+
+      <footer className="footer-interno pt-4 mt-4">
+        <Button to={"/nova-acao-bem"} as={Link}>
+          Solicitar doação
+        </Button>
+      </footer>
+    </Page>
+  );
 }
+
+export default PerfilInstituicao;
+
+// 27 doador 1
+// 28 instituicao 1
