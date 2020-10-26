@@ -75,16 +75,25 @@ function PerfilInstituicao() {
                   <div>
                     Email do doador: <b>{itemMatch.dadosDoador.emailDoador}</b>
                   </div>
-                  <div className="sobre-equipamento mt-2 small">
+                  <div className="sobre-equipamento mt-2">
                     <div className="font-weight-bold">
                       {itemMatch.tituloEquip}
                     </div>
-                    <div>{itemMatch.descrEquip}</div>
-                    <div>
-                      - Estado do equipamento (0 a 5): {itemMatch.escalaEquip}
+                    <div className="small">
+                      <div>{itemMatch.descrEquip}</div>
+                      <div>
+                        - Estado do equipamento (0 a 5): {itemMatch.escalaEquip}
+                      </div>
+                      {itemMatch.problEquip && (
+                        <div> - Problemas: {itemMatch.problEquip}</div>
+                      )}
+                      {itemMatch.reparoEquip && (
+                        <div>
+                          {" "}
+                          - Necessidade de reparos: {itemMatch.reparoEquip}
+                        </div>
+                      )}
                     </div>
-                    <div> - {itemMatch.problEquip}</div>
-                    <div> - {itemMatch.reparoEquip}</div>
                   </div>
                 </div>
               ))}

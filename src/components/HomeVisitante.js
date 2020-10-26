@@ -49,7 +49,7 @@ function HomeVisitante(props) {
   return (
     <Page title="Início">
       <Row>
-        <Col xl={6} lg={6}>
+        <Col xl={6} lg={12}>
           <header className="header-interno">
             <div className="mt-4 texto-lema text-justify">
               <div className="text-center mb-4">
@@ -61,7 +61,7 @@ function HomeVisitante(props) {
           </header>
         </Col>
 
-        <Col xl={6} lg={6}>
+        <Col xl={6} lg={12}>
           <div id="box-login" className="mb-4">
             <h6 className="mb-3 titulo-pequeno">Login</h6>
             <Form onSubmit={handleSubmit}>
